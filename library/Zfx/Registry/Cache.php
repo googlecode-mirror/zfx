@@ -46,9 +46,9 @@ class Zfx_Registry_Cache extends Zend_Registry
 	 * Constructor
 	 * 
 	 * @param string $frontend frontend name
-     * @param string $backend backend name
-     * @param array $frontendOptions associative array of options for the corresponding frontend constructor
-     * @param array $backendOptions associative array of options for the corresponding backend constructor
+	 * @param string $backend backend name
+	 * @param array $frontendOptions associative array of options for the corresponding frontend constructor
+	 * @param array $backendOptions associative array of options for the corresponding backend constructor
 	 * @return void
 	 */
 	public function __construct($frontendOptions = array(), $backendOptions = array()) 
