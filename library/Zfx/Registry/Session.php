@@ -62,26 +62,26 @@ class Zfx_Registry_Session extends Zend_Registry
 	}
 	
 	/**
-     * Getter method for session namespace
-     *
-     * @return Zend_Session_Namespace
-     */
-    public static function getSession()
-    {
-        return self::$_session;
-    }
-    
+	 * Getter method for session namespace
+	 *
+	 * @return Zend_Session_Namespace
+	 */
+	public static function getSession()
+	{
+		return self::$_session;
+	}
+
 	/**
-     * Unset the default registry instance.
-     * Primarily used in tearDown() in unit tests.
-     * @returns void
-     */
-    public static function _unsetInstance()
-    {
-        self::getSession()->unsetAll();
-    }
-    
-    /**
+	 * Unset the default registry instance.
+	 * Primarily used in tearDown() in unit tests.
+	 * @returns void
+	 */
+	public static function _unsetInstance()
+	{
+		self::getSession()->unsetAll();
+	}
+
+	/**
 	 * Defined by spl ArrayObject.
 	 * Here we are redefining the action to point to the session namespace
 	 * 
@@ -90,25 +90,25 @@ class Zfx_Registry_Session extends Zend_Registry
 	 */
 	public function offsetGet($index) 
 	{
-    	return self::getSession()->$index;
-    }
-    
-    /**
+		return self::getSession()->$index;
+	}
+
+	/**
 	 * Defined by spl ArrayObject.
 	 * Here we are redefining the action to point to the session namespace
 	 * 
 	 * @param string $index
 	 * @return bool
 	 */
-    public function offsetSet($index, $newval) 
-    {
+	public function offsetSet($index, $newval) 
+	{
 		if (self::$_session->isLocked()) {
-		    self::$_session->unLock();
+			self::$_session->unLock();
 		}
-    	self::getSession()->$index = $newval;
-    	self::$_session->lock();
-    }
-    
+		self::getSession()->$index = $newval;
+		self::$_session->lock();
+	}
+
 	/**
 	 * Defined by spl ArrayObject.
 	 * Here we are redefining the action to point to the session namespace
@@ -118,6 +118,6 @@ class Zfx_Registry_Session extends Zend_Registry
 	 */
 	public function offsetExists($index) 
 	{
-    	return (bool) isset(self::getSession()->$index);
-    }
+		return (bool) isset(self::getSession()->$index);
+	}
 } 
