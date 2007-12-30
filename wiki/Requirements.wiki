@@ -8,5 +8,5 @@ ZFXtensions is an extension of Zend Framework. We recommend that you install the
 
 = Details =
 
-  * PHP 5.2 or higher
+  * PHP 5.1.4 or higher
   * Zend Framework 1.0 or higher
