@@ -1,0 +1,12 @@
+#labels Phase-Requirements
+#What you need to use ZFXtensions
+
+= Zend Framework =
+
+ZFXtensions is an extension of Zend Framework. We recommend that you install the latest stable.
+
+
+= Details =
+
+  * PHP 5.2 or higher
+  * Zend Framework 1.0 or higher
