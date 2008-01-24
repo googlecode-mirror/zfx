@@ -72,6 +72,7 @@ MyValue
 Vous allez mieux comprendre toute l'utilitée d'un tel système :
 
 === Zendex_Bootstrap_Parser_Zend ===
+Pour connaître toutes les possibilitées du parser Zend, rendez-vous sur ZendexBootstrapParserZendFR
 
 ==== Fichier bootstrap.xml ====
 {{{
@@ -88,15 +89,16 @@ Vous allez mieux comprendre toute l'utilitée d'un tel système :
         	    <dir module="MyModule">/path/to/my/module/controller/directory</dir>
         	    <dir module="otherModule">/path/to/other/module/controller/directory</dir>
                 </addControllerDirectory>
+                <addModuleDirectory>
+        	    <dir>/path/to/my/modules</dir>
+                </addModuleDirectory>
             </Front>
         </Controller>
     </Zend>
 </Bootstrap>
 }}}
 
-Ici, cette configuration executera automatiquement la méthode Zend_Front_Controller::addControllerDirectory($path, $module) autant de fois qu'il y aura de balises <dir>.
-
-Pour connaître toutes les possibilitées du parser Zend, rendez-vous sur ZendexBootstrapParserZendFR
+Ici, cette configuration executera automatiquement la méthode Zend_Front_Controller::addControllerDirectory() autant de fois qu'il y aura de balises <dir>, idem pour Zend_Front_Controller::addModuleDirectory().
 
 ==== Aperçu de la classe Zendex_Bootstrap_Parser_Zend ====
 {{{
@@ -124,6 +126,15 @@ class Zendex_Bootstrap_Parser_Zend extends Zendex_Bootstrap_Parser_Abstract
 	    $dir = trim( (string) $directory);						
 	    Zend_Controller_Front::getInstance()->addControllerDirectory($dir, $module);
 	    unset($module, $dir);
+	}
+    }
+
+    public function Controller_Front_addModuleDirectory($xml) 
+    {
+        foreach($xml->dir as $directory) {
+	    $dir = trim( (string) $directory);						
+	    Zend_Controller_Front::getInstance()->addModuleDirectory($dir);
+	    unset($dir);
 	}
     }
 }
