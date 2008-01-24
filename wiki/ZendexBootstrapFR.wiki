@@ -38,7 +38,14 @@ class Zendex_Bootstrap_Parser_MyParser extends Zendex_Bootstrap_Parser_Abstract
 {
     public function MyParser($xml) 
     {
+        // Ici on lance le parcours du noeud xml <MyParser>
+        $this->_parseElement($xml);
+    }
 
+    public function MyMethod($xml) 
+    {
+        // Ici retourne "MyValue"
+        echo (string) $xml->MyArgument;
     }
 }
 }}}
