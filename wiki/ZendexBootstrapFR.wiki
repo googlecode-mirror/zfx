@@ -81,11 +81,16 @@ Vous allez mieux comprendre toute l'utilitée d'un tel système :
     <LoadParser className="*Zend*" />
 
     // Configuration du parser
-    <MyParser>
-        <MyMethod>
-            <MyArgument>MyValue</MyArgument>
-        </MyMethod>
-    </MyParser>
+    <Zend version="1.0.3">
+        <Controller>
+            <Front>
+                <addControllerDirectory>
+        	    <dir module="MyModule">/path/to/my/module/controller/directory</dir>
+        	    <dir module="otherModule">/path/to/other/module/controller/directory</dir>
+                </addControllerDirectory>
+            </Front>
+        </Controller>
+    </Zend>
 </Bootstrap>
 }}}
 
