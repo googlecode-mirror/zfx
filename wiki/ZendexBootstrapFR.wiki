@@ -1,0 +1,44 @@
+#summary Présentation de Zendex_Bootstrap
+
+= Zendex_Bootstrap =
+
+Le package Bootstrap vous permet de configurer le bootstrap de votre application par l'intermediaire d'un fichier de configuration XML.
+
+L'objectif principal est de pouvoir étendre au maximum le parser du fichier XML.
+Vous pouvez ainsi utiliser Zendex_Bootstrap pour vos propres classes ou fonctionnalités.
+
+
+= Zendex_Bootstrap_Parser =
+== Principe d'utilisation ==
+
+Dans Zend_Bootstrap, un parser sert à représenter un balisage XML préçis sous forme de classes et méthodes.
+
+Dans un premier temps, voici un exemple simple de configuration XML avec un parser que nous allons appeler MyParser :
+
+==== Fichier config.xml ====
+{{{
+<?xml version="1.0"?>
+<Bootstrap>
+    // Chargement d'un parser préçis.
+    <LoadParser className="MyParser" />
+
+    // Configuration du parser
+    <MyParser>
+        <MyMethod>
+            <MyArgument>MyValue</MyArgument>
+        </MyMethod>
+    </MyParser>
+</Bootstrap>
+}}}
+
+Ici, le parser MyParser est représenté par la classe *_Zendex_Bootstrap_Parser_MyParser_*
+==== Fichier Zendex/Bootstrap/Parser/MyParser.php ====
+{{{
+class Zendex_Bootstrap_Parser_MyParser extends Zendex_Bootstrap_Parser_Abstract
+{
+    public function MyParser($xml) 
+    {
+
+    }
+}
+}}}
