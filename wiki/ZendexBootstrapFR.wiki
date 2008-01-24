@@ -15,7 +15,7 @@ Dans Zend_Bootstrap, un parser sert à représenter un balisage XML préçis sou
 
 Dans un premier temps, voici un exemple simple de configuration XML avec un parser que nous allons appeler MyParser :
 
-==== Fichier config.xml ====
+==== Fichier bootstrap.xml ====
 {{{
 <?xml version="1.0"?>
 <Bootstrap>
@@ -31,7 +31,10 @@ Dans un premier temps, voici un exemple simple de configuration XML avec un pars
 </Bootstrap>
 }}}
 
-Ici, le parser MyParser est représenté par la classe *_Zendex_Bootstrap_Parser_MyParser_*
+Ici, le parser MyParser est représenté par la classe *_Zendex_Bootstrap_Parser_MyParser_*.
+
+Observer ci-dessous comment nous représentons chaque noeud xml.
+
 ==== Fichier Zendex/Bootstrap/Parser/MyParser.php ====
 {{{
 class Zendex_Bootstrap_Parser_MyParser extends Zendex_Bootstrap_Parser_Abstract
@@ -49,3 +52,42 @@ class Zendex_Bootstrap_Parser_MyParser extends Zendex_Bootstrap_Parser_Abstract
     }
 }
 }}}
+
+Maintenant, observer ci-dessous le bootstrap de notre application :
+
+==== Fichier Bootstrap /htdocs/index.php ====
+{{{
+// Notez qu'il faut définir la librarie Zend et Zendex dans l'include_path.
+
+// Lance le bootstrap
+Zendex_Bootstrap::launch('bootstrap.xml');
+}}}
+
+==== Sortie HTML de /htdocs/index.php ====
+{{{
+MyValue
+}}}
+
+== Les parsers pré-définis ==
+Vous allez mieux comprendre toute l'utilitée d'un tel système :
+
+=== Zendex_Bootstrap_Parser_Zend ===
+
+==== Fichier bootstrap.xml ====
+{{{
+<?xml version="1.0"?>
+<Bootstrap>
+    // Chargement d'un parser Zend.
+    <LoadParser className="*Zend*" />
+
+    // Configuration du parser
+    <MyParser>
+        <MyMethod>
+            <MyArgument>MyValue</MyArgument>
+        </MyMethod>
+    </MyParser>
+</Bootstrap>
+}}}
+
+=== Zendex_Bootstrap_Parser_IncludePath ===
+==== Pour la définition de l'include_path ====
