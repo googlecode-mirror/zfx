@@ -94,5 +94,40 @@ Vous allez mieux comprendre toute l'utilitée d'un tel système :
 </Bootstrap>
 }}}
 
+Ici, cette configuration executera automatiquement la méthode Zend_Front_Controller::addControllerDirectory($path, $module) autant de fois qu'il y aura de balises <dir>.
+
+Pour connaître toutes les possibilitées du parser Zend, rendez-vous sur ZendexBootstrapParserZendFR
+
+==== Aperçu de la classe Zendex_Bootstrap_Parser_Zend ====
+{{{
+class Zendex_Bootstrap_Parser_Zend extends Zendex_Bootstrap_Parser_Abstract
+{
+    public function Zend($xml) 
+    {
+        $this->_parseElement($xml);
+    }
+
+    public function Controller($xml) 
+    {
+        $this->_parseElement($xml, 'Controller_');
+    }
+
+    public function Controller_Front($xml) 
+    {
+        $this->_parseElement($xml, 'Controller_Front_');
+    }
+
+    public function Controller_Front_addControllerDirectory($xml) 
+    {
+        foreach($xml->dir as $directory) {
+	    $module = $this->_toString($directory['module']);
+	    $dir = trim( (string) $directory);						
+	    Zend_Controller_Front::getInstance()->addControllerDirectory($dir, $module);
+	    unset($module, $dir);
+	}
+    }
+}
+}}}
+
 === Zendex_Bootstrap_Parser_IncludePath ===
 ==== Pour la définition de l'include_path ====
